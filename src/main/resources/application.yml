@@ -1,0 +1,14 @@
+
+# MySQL
+spring:
+  datasource:
+    hikari:
+      connection-test-query : SELECT NOW() FROM dual
+
+
+# mybatis
+mybatis:
+  configuration:
+    cache-enabled : false
+    jdbc-type-for-null : NULL
+    map-underscore-to-camel-case : true

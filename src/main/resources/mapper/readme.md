@@ -1,0 +1,1 @@
+mybatis mapper 폴더
