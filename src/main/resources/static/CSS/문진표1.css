@@ -1,0 +1,149 @@
+*{
+    text-align: center;
+  }
+
+    .title{
+      font-size:50px;
+      background-color:aquamarine;
+    }
+
+    .menu{
+      width:100%;
+      height:50px;
+    }
+
+    .menu ul li{
+      float: left;
+      width: 25%;
+      height: 50px;
+      line-height:50px;
+      font-size: 20px;
+      font-weight: bold;
+      background-color:aliceblue;
+    }
+
+    .menu ul li a{
+      display:block;
+    }
+
+    .menu ul li a:hover{
+      background-color:slateblue;
+      color: white;
+    }
+  
+    .div1{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .div2{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .div3{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .div4 {
+        border: 1px solid;
+        font-weight: bold;
+        font-size: 20px;
+        width: 100px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+  
+    .div5 {
+      border: 1px solid;
+      font-weight: bold;
+      width: 100px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .div6{
+      border: 1px solid;
+      font-weight: bold;
+      width: 100px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .butt{
+        padding: 1.5em;
+    }
+
+    button,
+    button::after {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+	transition: all 0.3s;
+    }
+
+    button {
+    background: none;
+    border: 3px solid rgb(102, 13, 13);
+    border-radius: 5px;
+    color: rgb(23, 20, 190);
+    display: block;
+    font-size: 1.6em;
+    font-weight: bold;
+    margin: 1em auto;
+    padding: 2em 6em;
+    position: relative;
+    text-transform: uppercase;
+    }
+
+button::before,
+button::after {
+  background-color:honeydew; 
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+button:hover {
+  color: #2ecc71;
+}
+
+/* BUTTON 1 */
+.btn-1::after {
+  height: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.btn-1:hover:after {
+  height: 100%;
+}
+
+/* BUTTON 2 */
+.btn-2::after {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 0;
+}
+
+.btn-2:hover:after {
+  width: 100%;
+}
