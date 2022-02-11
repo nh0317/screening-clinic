@@ -1,4 +1,4 @@
-package com.reservation.screeningclinic.domain;
+package com.reservation.screeningclinic.domain.screenclinic;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
