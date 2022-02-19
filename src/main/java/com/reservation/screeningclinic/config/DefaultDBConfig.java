@@ -57,7 +57,7 @@ public class DefaultDBConfig {
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "dev.mybatis.configuration")
+    @ConfigurationProperties(prefix = "mybatis.configuration")
     public org.apache.ibatis.session.Configuration mybatisConfig() {
         return new org.apache.ibatis.session.Configuration();
     }

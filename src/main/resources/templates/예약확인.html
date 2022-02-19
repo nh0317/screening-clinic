@@ -1,0 +1,64 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="../CSS/문진표1.css">
+    </head>
+    <body>
+        <div class="menu">
+            <ul>
+                <li><a th:href="'/reservation/'+${screenClinicIdx}">예약하기</a></li>
+                <li><a href="#">알림, 정보</a></li>
+                <li><a href="#">혼잡도</a></li>
+                <li><a href="#">마이페이지</a></li>
+            </ul>
+        </div>
+        <div class="title" th:text="${screenClinic.clinicName}">
+            000보건소
+        </div>
+        <hr>
+        
+            <h2>
+                <span id="today" th:text="${date}+' '"></span> 예약 정보 조회</h2>
+            <h2>
+                <span id="currentTime" th:text="${currentTime}+' '"></span> 까지 대기자
+            </h2>
+
+        <table th:scope="item" id="reservationTable" th:fragment="reservationTable">
+            <thead>
+                <tr>
+                    <td>예약 시간</td>
+                    <td>예약자</td>
+                    <td>상태</td>
+                </tr>
+            </thead>
+            <tr th:each="item:${reservationList}">
+                <td th:text="${item.reservationTime}"></td>
+                <td th:text="${item.name}">김 o o</td>
+                <td th:if="${item.state}">완료 </td>
+                <td th:unless="${item.state}">대기중
+                    <button style = "float: center; background-color: #34C9C9; color: white; font-size: 1em; padding: 8px 20px 5px 15px;"
+                    class = "completeBtn" th:data-idx="${item.reservationIdx}" th:value="${item.reservationIdx}">
+                        완료하기
+                    </button>
+                </td>
+            </tr>
+        </table>
+            
+            <div class="butt">
+                <a href="/reservation"><button class="btn-1">예약 추가</button></a>
+                <a href="/questionnaire"><button class="btn-2">시간 문진표 다운로드</button></a>
+            </div>
+    </div>
+        <br>
+        <br>
+        <hr>
+
+        <h2>현재 정보</h2><br><br>
+        <input type="text" id="screenClinicIdx" th:value="${screenClinicIdx}" hidden/>
+        <h2 th:text="'현재 예약 인원 : '+${reservationList.size()}+'/10'">현재 예약 인원 : 5/10</h2>
+        <script type="text/javascript" src="../JS/예약확인.js">
+        </script>
+    </body>
+</html>

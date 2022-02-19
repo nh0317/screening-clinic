@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reservation.screeningclinic.mapper.ScreenClinicMapper">
+    <select id="getScreenClinicInfo" resultType="ScreenClinicInfo">
+        SELECT *
+        FROM screenclinic
+        WHERE screenclinic_id = #{screenClinicIdx}
+    </select>
+
+    <select id="getAll" resultType="ScreenClinicInfo">
+        SELECT *
+        FROM screenclinic
+    </select>
+
+    <update id="insertLongLat">
+        update screenclinic
+        SET
+            longitude = #{longitude},
+            latitude = #{latitude}
+        WHERE screenclinic_id =#{screenClinicIdx}
+    </update>
+
+    <select id="findByDistance" resultType="ScreenClinicInfo">
+        SELECT screenclinic_id, clinic_name,latitude,longitude,
+               round((6371 *
+                      acos(cos(radians(#{userLatitude})) * cos(radians(latitude)) * cos(radians(longitude)
+                          - radians(#{userLongitude})) + sin(radians(#{userLatitude})) * sin(radians(latitude)))),
+                     1) as distanceFromUser
+        FROM screenclinic
+        HAVING distanceFromUser <![CDATA[ <= ]]> #{distance}
+    </select>
+
+</mapper>

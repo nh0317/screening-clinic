@@ -74,6 +74,25 @@
     padding-right: 20px;
   }
 
+
+  table{
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  table,td,th .timePicker{
+    border-collapse: collapse;
+    width: 200px;
+    height: 50px;
+    border : 1px solid black;
+    background-color: lightskyblue;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+
+  }
   .clicked {
-    color: red;
+    background-color: cornflowerblue;
+    color : aliceblue;
   }

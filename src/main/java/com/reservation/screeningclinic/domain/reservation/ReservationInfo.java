@@ -1,13 +1,18 @@
 package com.reservation.screeningclinic.domain.reservation;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.apache.ibatis.type.Alias;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-@NoArgsConstructor
+import java.time.format.DateTimeFormatter;
+
 @Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@Alias("ReservationInfo")
 public class ReservationInfo {
 
     private Long reservationIdx;
@@ -24,11 +29,23 @@ public class ReservationInfo {
     // 0: 미완료 1: 완료
     private Boolean state;
 
-    private String modBy;
+    private Long modBy;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
     private LocalDateTime deletedAt;
+
+    private String name;
+
+    public ReservationInfo(Long userIdx, Long screenClinicIdx, String reservationDate, String reservationTime, Long modBy) {
+        this.userIdx=userIdx;
+        this.screenClinicIdx=screenClinicIdx;
+        this.reservationDate = LocalDate.parse(reservationDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.reservationTime = LocalTime.parse(reservationTime, DateTimeFormatter.ofPattern("HH:mm"));
+        this.state=false;
+        this.modBy=modBy;
+    }
+
 }

@@ -1,12 +1,12 @@
 <!doctype html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <link rel="stylesheet" type="text/css" href="문진표2.css">
+        <link rel="stylesheet" type="text/css" href="../CSS/문진표2.css">
     </head>
     <body>
         <div class="menu">
             <ul>
-                <li><a href="#">예약하기</a></li>
+                <li><a th:href="'/reservation/'+${screenClinicIdx}">예약하기</a></li>
                 <li><a href="#">알림, 정보</a></li>
                 <li><a href="#">혼잡도</a></li>
                 <li><a href="#">마이페이지</a></li>
@@ -17,8 +17,8 @@
         <br>
         <br>
         <div class="each">
-            <li><a href="">일자별</a></li>
-            <li><a href="">예약자별</a></li>
+            <li><a href="/questionnaire">일자별</a></li>
+            <li><a href="/questionnaire2">예약자별</a></li>
         </div>
         <br>
         <br>

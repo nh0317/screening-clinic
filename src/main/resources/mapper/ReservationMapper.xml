@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reservation.screeningclinic.mapper.ReservationMapper">
+    <insert id="save" useGeneratedKeys="true" keyProperty="reservationIdx" parameterType="ReservationInfo">
+        INSERT INTO Reservation(reservation_idx, user_idx, screen_clinic_idx,reservation_date,reservation_time,mod_by, state, deleted_at)
+        VALUES(#{reservationIdx}, #{userIdx}, #{screenClinicIdx}, #{reservationDate}, #{reservationTime}, #{modBy}, #{state}, #{deletedAt})
+            ON DUPLICATE KEY UPDATE
+            user_idx=#{userIdx},
+            screen_clinic_idx=#{screenClinicIdx},
+            reservation_date=#{reservationDate},
+            reservation_time=#{reservationTime},
+            state=#{state},
+            mod_by=#{modBy}
+    </insert>
+    <select id="getReservationInfoByScreenClinicIdxAndTime" resultType="ReservationInfo">
+        SELECT r.reservation_idx as reservationIdx, r.user_idx as userIdx, u.name as name, r.state as state, r.reservation_time as reservationTime
+        FROM reservation r LEFT JOIN users u ON r.user_idx = u.userIdx
+        WHERE screen_clinic_idx = #{screenClinicIdx}
+          and r.reservation_time <![CDATA[ <= ]]> TIME_FORMAT(#{startTime},"%H:%i")
+          and r.state=0
+          and r.reservation_date = #{reservationDate}
+        ORDER BY r.state,r.reservation_time, r.createdAt
+    </select>
+    <select id="getReservationInfo" resultType="ReservationInfo">
+        SELECT *
+        FROM reservation
+        WHERE reservation_idx = #{reservationIdx}
+    </select>
+
+    <select id="cntReservation" resultType="Integer">
+        SELECT count(*)
+        FROM reservation
+        WHERE screen_clinic_idx = #{screenClinicIdx} and state=0
+    </select>
+</mapper>

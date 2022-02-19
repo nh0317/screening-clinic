@@ -1,60 +1,70 @@
 <!doctype html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" type="text/css" href="예약하기2.css">
+        <link rel="stylesheet" type="text/css" href="../CSS/예약하기2.css">
         
     </head>
     <body>
         <div class="menu">
             <ul>
-                <li><a href="#">예약하기</a></li>
+                <li><a th:href="'/reservation/'+${screenClinicIdx}">예약하기</a></li>
                 <li><a href="#">알림, 정보</a></li>
                 <li><a href="#">혼잡도</a></li>
                 <li><a href="#">마이페이지</a></li>
             </ul>
         </div>
-        <div class="title">0 0 0 보건소</div>
+        <div class="title" th:text="${screenClinic.clinicName}">
+            000보건소
+        </div>
         
         <hr>
             <h2>날짜 선택</h2>
-            <input type="date" id="calender" name="trip-start" value="2022-02-01"> 
+            <input type="date" id="calender" value="2022-02-01">
         
             <h2>시간 선택</h2>
-        <div class="mar">
-        <div class="div1">
-            <div class="div6">13 : 00</div>
-            <div class="div6">13 : 30</div>
-        </div>
-        <div class="div2">
-            <div class="div6">14 : 00</div>
-            <div class="div6">14 : 30</div>
-        </div>
-        <div class="div3">
-            <div class="div6">15 : 00</div>
-            <div class="div6">15 : 30</div>
-        </div>
-        <div class="div4">
-            <div class="div6">16 : 00</div>
-            <div class="div6">16 : 30</div>
-        </div>
-        <div class="div5">
-            <div class="div6">17 : 00</div>
-            <div class="div6">17 : 30</div>
-        </div>
-    </div>
+
+        <table th:scope="item" id="reservationTimeTable" th:fragment="reservationTimeTable">
+            <tr th:each="item:${reservationTimeList}">
+                <td class="timePicker" th:text="${item.firstTime}">13:00</td>
+                <td class="timePicker" th:text="${item.secondTime}">13:30</td>
+            </tr>
+<!--            <tr>-->
+<!--                <td class="timePicker">14:00</td>-->
+<!--                <td class="timePicker">14:30</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td class="timePicker">15:00</td>-->
+<!--                <td class="timePicker">15:30</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td class="timePicker">16:00</td>-->
+<!--                <td class="timePicker">16:30</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td class="timePicker">17:00</td>-->
+<!--                <td class="timePicker">17:30</td>-->
+<!--            </tr>-->
+        </table>
+
         <br>
         <br>
         <hr>
 
         <h2>현재 정보</h2><br><br>
-        <h2>현재 예약 인원 : 5/10</h2>
+        <h2>현재 예약 인원 : <span id="cntReservation" th:text="${cntReservation}">0</span></h2>
         <div class="rev">
-            <button style = "float: right; background-color: #34C9C9; color: white; font-size: 1.2em; padding: 8px 20px 5px 15px;">
-                예약하기
-            </button>
+            <label>
+                <input type="text" id="reservationTime" hidden/>
+                <input type="text" id="screenClinicIdx" th:value="${screenClinicIdx}" hidden/>
+                <button style = "float: right; background-color: #34C9C9; color: white; font-size: 1.2em; padding: 8px 20px 5px 15px;"
+                        id="reservationBtn">
+                    예약하기
+                </button>
+            </label>
         </div>
-        <script type="text/javascript" src="예약하기2.js"></script>
+        <script type="text/javascript" src="../JS/예약하기2.js">
+        </script>
     </body>
 </html>

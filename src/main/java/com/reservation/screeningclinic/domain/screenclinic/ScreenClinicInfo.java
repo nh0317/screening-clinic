@@ -2,13 +2,20 @@ package com.reservation.screeningclinic.domain.screenclinic;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import org.apache.ibatis.type.Alias;
+import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
+@Setter
+@Alias("ScreenClinicInfo")
+@ToString
 public class ScreenClinicInfo {
 
-    private Long screenClinicIdx;
+    private Long screenClinicId;
 
     private String city;
 
@@ -32,7 +39,7 @@ public class ScreenClinicInfo {
 
     private String disabilityConvenience;
 
-    private LocalDateTime updatedAt;
+    private String updatedAt;
 
     private LocalDateTime createdAt;
 

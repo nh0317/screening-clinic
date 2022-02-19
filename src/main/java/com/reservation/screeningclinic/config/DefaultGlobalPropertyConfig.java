@@ -20,9 +20,18 @@ public class DefaultGlobalPropertyConfig {
     @Value("${jdbc-url}")
     private String url;
 
-    @Value("${user-name}")
+    @Value("${name}")
     private String username;
 
     @Value("${password}")
     private String password;
+
+    @Value("${naver-id}")
+    private String naverId;
+
+    @Value("${naver-secret}")
+    private String naverSecret;
+
+    @Value("${kakao-url}")
+    private String kakaoUrl;
 }
