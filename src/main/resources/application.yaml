@@ -4,7 +4,11 @@ spring:
   datasource:
     hikari:
       connection-test-query : SELECT NOW() FROM dual
-
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    check-template-location: true
 
 # mybatis
 mybatis:

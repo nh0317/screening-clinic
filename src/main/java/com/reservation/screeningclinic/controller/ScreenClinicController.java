@@ -30,7 +30,6 @@ public class ScreenClinicController {
 
     @Autowired
     ScreenClinicMapper screenClinicMapper;
-
     @Autowired
     DefaultGlobalPropertyConfig defaultGlobalPropertyConfig;
 

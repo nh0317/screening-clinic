@@ -24,7 +24,8 @@
     var markers = [];
     httpRequest = new XMLHttpRequest();
     /* Post 방식으로 요청 */
-    httpRequest.open('POST', '/getScreenClinic', false);
+    httpRequest.open('POST', '/getScreenClinic', true);
+
     /* Response Type을 Json으로 사전 정의 */
     httpRequest.responseType = "json";
     /* 요청 Header에 컨텐츠 타입은 Json으로 사전 정의 */
@@ -59,13 +60,13 @@
     if (navigator.geolocation) {
 
         // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
 
             latitude = position.coords.latitude; // 위도
             longitude = position.coords.longitude; // 경도
-            console.log("현재 위치는 : " + latitude + ", "+ longitude);
-            if (latitude===undefined || longitude === undefined){
-                console.log("현재 위치는 : " + 33.450701 + ", "+ 126.570667);
+            console.log("현재 위치는 : " + latitude + ", " + longitude);
+            if (latitude === undefined || longitude === undefined) {
+                console.log("현재 위치는 : " + 33.450701 + ", " + 126.570667);
                 const data = {
                     "longitude": 33.450701,
                     "latitude": 126.570667
@@ -73,10 +74,9 @@
                 httpRequest.send(JSON.stringify(data));
 
                 var locPosition = new kakao.maps.LatLng(latitude, longitude); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                displayMarkerWithMsg(locPosition,"현재 위치를 알 수 없어요","");
+                displayMarkerWithMsg(locPosition, "현재 위치를 알 수 없어요", "");
                 map.setCenter(locPosition);
-            }
-            else {
+            } else {
                 const data = {
                     "longitude": longitude,
                     "latitude": latitude
@@ -87,21 +87,15 @@
                 displayMarker(locPosition);
                 map.setCenter(locPosition);
             }
-
         });
-
-    } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-
-        var locPosition = new kakao.maps.LatLng(33.450701,126.570667),
+    }
+    else
+    { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+        var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
             message = 'geolocation을 사용할수 없어요..'
 
-        displayMarkerWithMsg(locPosition, message,"");
+        displayMarkerWithMsg(locPosition, message, "");
         map.setCenter(locPosition);
-    }
-    console.log("현재 위치는 : " + latitude + ", "+ longitude);
-    for (var i=0;i<markers.length;i++){
-        markers[i]
-
     }
 
     function displayMarkerWithMsg(locPosition, message,url) {
