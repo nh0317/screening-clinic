@@ -54,7 +54,6 @@
             }
         }
     };
-    /* 정의된 서버에 Json 형식의 요청 Data를 포함하여 요청을 전송 */
 
     var latitude, longitude
     if (navigator.geolocation) {
@@ -64,6 +63,7 @@
 
             latitude = position.coords.latitude; // 위도
             longitude = position.coords.longitude; // 경도
+            console.log("현재 위치는 : " + latitude + ", " + longitude);
             if (latitude !== undefined && longitude !== undefined)
             {
                 console.log("현재 위치는 : " + latitude + ", " + longitude);
