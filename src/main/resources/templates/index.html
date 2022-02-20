@@ -64,21 +64,34 @@
             latitude = position.coords.latitude; // 위도
             longitude = position.coords.longitude; // 경도
             console.log("현재 위치는 : " + latitude + ", "+ longitude);
-            const data = {
-                "longitude": longitude,
-                "latitude": latitude
-            };
-            httpRequest.send(JSON.stringify(data));
+            if (latitude===undefined){
+                const data = {
+                    "longitude": 33.450701,
+                    "latitude": 126.570667
+                };
+                httpRequest.send(JSON.stringify(data));
 
-            var locPosition = new kakao.maps.LatLng(latitude, longitude); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-            displayMarker(locPosition);
-            map.setCenter(locPosition);
+                var locPosition = new kakao.maps.LatLng(latitude, longitude); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                displayMarkerWithMsg(locPosition,"현재 위치를 알 수 없어요","");
+                map.setCenter(locPosition);
+            }
+            else {
+                const data = {
+                    "longitude": longitude,
+                    "latitude": latitude
+                };
+                httpRequest.send(JSON.stringify(data));
+
+                var locPosition = new kakao.maps.LatLng(latitude, longitude); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                displayMarker(locPosition);
+                map.setCenter(locPosition);
+            }
 
         });
 
     } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 
-        var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+        var locPosition = new kakao.maps.LatLng(33.450701,126.570667),
             message = 'geolocation을 사용할수 없어요..'
 
         displayMarkerWithMsg(locPosition, message,"");
