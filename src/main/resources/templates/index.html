@@ -64,7 +64,8 @@
             latitude = position.coords.latitude; // 위도
             longitude = position.coords.longitude; // 경도
             console.log("현재 위치는 : " + latitude + ", "+ longitude);
-            if (latitude===undefined){
+            if (latitude===undefined || longitude === undefined){
+                console.log("현재 위치는 : " + 33.450701 + ", "+ 126.570667);
                 const data = {
                     "longitude": 33.450701,
                     "latitude": 126.570667
